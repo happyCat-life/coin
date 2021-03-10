@@ -69,8 +69,10 @@ const Disclosure = function(){
             storageData = localStorage.getItem('data');
             let currentBoolean = (storageData) ? JSON.parse(storageData)[0].id === array[0].id : false;
             if(!currentBoolean){
+                let storageDate = JSON.parse(localStorage.getItem('postDate')) || [];
+                storageDate.unshift(_this.getDate('yyyy-MM-dd hh:mm:ss'));
                 localStorage.setItem('data' , JSON.stringify(array));
-                localStorage.setItem('postDate' , _this.getDate('yyyy-MM-dd hh:mm:ss'));
+                localStorage.setItem('postDate' , JSON.stringify(storageDate));
                 console.log('xhr');
             }else{
                 array = JSON.parse(storageData);
